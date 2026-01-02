@@ -2,10 +2,10 @@
 #import "../template_zusammenf.typ": *
 
 #show: project.with(
-  authors: ("Nina Grässli", "Jannis Tschan"),
+  authors: ("Nina Grässli", "Jannis Tschan", "edited by Linus, Katharina & Melanie"),
   fach: "WrStat",
   fach-long: "Wahrscheinlichkeit und Statistik",
-  semester: "HS24",
+  semester: "HS25",
   tableofcontents: (enabled: true, depth: 3, columns: 2),
   appendix: (
     "WrStat/LinRegTabelle.typ",
@@ -40,15 +40,20 @@
 = Hitchhiker's Guide to WrStat
 #hinweis[*Hinweis:* In der Zusammenfassung werden Anweisungen zur Taschenrechnerbenutzung gegeben. Diese beziehen sich
   auf den TI nSpire CX II-T und das Skript auf #underline[https://github.com/KROIA/OST_WrStat].
-  
+
   Das Skript kann entweder mithilfe der Software, die dem TR beilag, oder der Webseite
   #underline[https://nspireconnect.ti.com/nsc/] auf den TR kopiert werden. Die Webseite ist nur mit Chrome auf Mac oder
   Windows verwendbar, auf Linux muss der User Agent manuell angepasst werden.
-  
+
   Wenn das Skript in den "MyLib"-Ordner abgelegt und im Scratchpad Menu-1-7-1 (Bibliotheken aktualisieren) ausgewählt
   wird, sind anschliessend alle Funktionen des Skripts direkt im Scratchpad mit der Buch-Taste $->$ 6 $->$ wrstat
   erreichbar.
 ]
+
+#hinweis[
+  Weitere Hinweise: Alle weiteren Angabenzum TR beziehen sich auf das Modell TI-Nspire CX CAS. Bei anderen Taschenrechnermodellen können abweichende Tastenbelegungen vorkommen.
+]
+
 
 Nachfolgend ist die Reihenfolge einer typischen WrStat-Prüfung von Andreas Müller:
 
@@ -77,8 +82,10 @@ Nachfolgend ist die Reihenfolge einer typischen WrStat-Prüfung von Andreas Mül
       #hinweis["Kann man daraus schliessen ..." / "Kann damit eine Aussage über xy gemacht werden" / "Formulieren Sie einen Test ..."]
 
     == Aufgabe 5
-    _ @test: _ Gegeben ist eine Studie oder Untersuchung mit diversen Messdaten.\
+    - _ @test: _ Gegeben ist eine Studie oder Untersuchung mit diversen Messdaten.\
     #hinweis["Kann man daraus schliessen ..." / "Kann damit eine Aussage über xy gemacht werden" / "Formulieren Sie einen Test ..."]
+    - _ @verteilung: _ Gegeben ist meist ein längerer Text mit Prozentzahlen.\
+    #hinweis["Wann ist ..." / "Zu welcher Zeit ..." / "Mit wie vielen ...", "Wie gross ist die Wahrscheinlichkeit ..."]
 
     == Aufgabe 6
     _ @verteilung: _ Gegeben ist meist ein längerer Text mit Prozentzahlen.\
@@ -99,6 +106,108 @@ Nachfolgend ist die Reihenfolge einer typischen WrStat-Prüfung von Andreas Mül
 
 #pagebreak()
 
+= TR-Formeln von Linus
+=== Binomische Formel und Kombinatorik
+[menu] > 5: Wahrscheinlichkeit > 3: Kombinationen > nCr(n,k)[enter]. Beispiel:
+nCr(13,6)
+
+=== Lineare Regression
+Die x und y Werte in einem Lists & Spreadsheet eintragen.
+
+Berechnung:
+[menu] > 4: Statistik > 1: Statistische Berechnung > 1: Lineare Regression (mx+b). -X
+List: "x", Y List: "y", Store RegEq to: f1(x) > OK. Ergebnisse (a, b, r etc.)
+erscheinen in neuen Spalten
+
+=== Wahrscheinlichkeitsdichte -> Verteilfunktion (Integral)
+[menu] → Calculus (oder Analysis) → Integral wählen.
+
+=== Standardnormalverteilung (Quantilsfunktion)
+==== Wahrscheinlichkeiten P(a≤Z≤b)
+Im Calculator: [menu] → 6 Statistik → 5 Verteilungen → 2 Normal Cdf wählen
+- Untere Grenze = a (Falls kein unteres Limit a = −∞),
+- obere Grenze = b, Mittelwert = 0,
+- Standardabw. = 1
+eingeben → ergibt die gesuchte Wahrscheinlichkeit unter der Standardnormalverteilung.
+
+==== Quantile / z-Werte (invNorm
+Für z-Werte zu gegebenen Flächen:
+
+[menu] → 6 Statistik → 5 Verteilungen → 3 Inverse Normal
+„Area“ = Fläche links vom gesuchten z, Mittelwert = 0, Standardabw. = 1 → liefert den zugehörigen
+z-Wert der Standardnormalverteilung.
+
+=== Poisson Verteilung
+==== Einzelwahrscheinlichkeit P(X=k)P(X=k) – poissonpdf
+Calculator öffnen.
+Menü → 6 Statistik → 5 Verteilungen → J Poisson Pdf auswählen.
+
+Eingaben:
+- λ (mean): Erwartungswert der Poisson-Verteilung
+- x: gewünschte Trefferzahl k
+Ausgabe ist P(X=k)P(X=k).
+
+==== Kumulative Wahrscheinlichkeit P(a≤X≤b)P(a≤X≤b) – poissoncdf
+Menü → 6 Statistik → 5 Verteilungen → K Poisson Cdf.
+
+Eingaben:
+- λ: Erwartungswert
+- lower bound: a (falls kein Wert a = -$infinity$ )
+- upper bound: b
+Ausgabe ist P(a≤X≤b)P(a≤X≤b); für P(X≤k)P(X≤k)
+
+=== Chi2-Test
+1. Daten eingeben (Lists & Spreadsheet)
+Beobachtete Häufigkeiten → Liste L1
+Erwartete Häufigkeiten → Liste L2
+
+Beispiel:
+- L1: {15, 22, 18, 25} (beobachtet)
+- L2: {20, 20, 20, 20} (erwartet)
+
+2. χ²-Test starten
+Menu → 4 Statistics → 4 Stat Tests → 7 χ² GOF Test (Goodness of Fit)
+
+3. Einstellungen
+Observed: L1
+Expected: L2
+df: Anzahl Kategorien - 1
+
+4. Ergebnis ablesen
+χ² = ... (Diskrepanz)
+p = ... (p-Wert)
+df = Freiheitsgrad
+Entscheidung: Wenn p < α (z.B. 0.05), dann signifikante Diskrepanz zwischen beobachteten und
+erwarteten Häufigkeiten. Hypothese kann verworfen werden.
+
+=== t-Test
+==== 1. Stichproben-t-Test
+1. Listen & Spreadsheet: Daten in eine Liste (z.B. L1 ) eingeben.
+2. Calculator öffnen.
+3. Menü → Statistics → Stat Tests → t Test.
+4. Inpt: Data wählen, Liste ( L1 ) angeben, Freq: 1 .
+5. μ0 (Hypothesen-Mittelwert) und Alternativhypothese (<, > oder ≠) setzen.
+6. Mit OK bestätigen; ablesen: t , p , df .
+
+==== 2-Stichproben-t-Test (unabhängig)
+1. Listen & Spreadsheet: Gruppe 1 in L1 , Gruppe 2 in L2 .
+2. Calculator → Menü → 6 Statistics → 7 Stat Tests → 4 Zwei-Sample t Test.
+3. Inpt: Data , List1: L1 , List2: L2 , Freq1 = Freq2 = 1 .
+4. Alternativhypothese wählen.
+5. Pooled: Yes , wenn Varianzen etwa gleich; sonst Pooled: No .
+6. OK → t , p , df ablesen.
+
+=== F-Test
+==== F-Test für zwei Varianzen
+1. Listen & Spreadsheet: Daten der ersten Stichprobe in L1 , der zweiten in L2 .
+2. Calculator → Menü → 2 Statistics → 2 Stat Tests → 9 Zwei-Stichpriben F Test (oder ähnlich).
+3. Inpt: Data , List1: L1 , List2: L2 .
+4. Alternativhypothese für die Varianzen wählen (>, < oder ≠).
+5. OK → F , p , df1 , df2 ablesen.
+
+#pagebreak()
+
+
 = Kombinatorik <kombinatorik>
 #hinweis[
   Meist Aufgabe 1\
@@ -117,7 +226,25 @@ Nachfolgend ist die Reihenfolge einer typischen WrStat-Prüfung von Andreas Mül
   + Aufgabe zuerst auslassen und am Schluss der Prüfung lösen, weil meist relativ kompliziert und zeitintensiv.
   + Versuchen, die Texte auf eines der untenstehenden Probleme herunterzubrechen
   + Entsprechende Regeln anwenden
+
+  ==== weitere Hinweise
+  Wenn zwei oder mehrere Aspekte der Aufgabe erfüllt werden sollen, dann ist oftmals eine Multiplikation gefragt. Bei einer Fallunterscheidung reicht hingegen meistens eine Addition.
+  Merkbeispiel: Du gehst ins Restaurant. Es gibt 3 Vorspeisen und 5 Hauptgerichte.
+  - Du willst eine Vorspeise und ein Hauptgericht essen. Wie viele Kombinationen? 3*5
+  - Du hast wenig Hunger. Du isst entweder nur eine Vorspeise oder nur ein Hauptgericht. Wie viele Möglichkeiten? 3+5
+
+  Bei einer Kombination ist die Reihenfolge mehrheitlich egal und erfolgt ohne Zurücklegen. Typische Beispiel dafür sind Kartenspiele, Teams bilden, Lotto
+
+  Bei einer Permutation ist die Reihenfolge wichtig und erfolgt ebenfalls ohne Zurücklegen. Typische Beispiele sind Personen auf Stühlen, Ämtervergaben
+
+  Bei der Variation ist die Reihenfolge wichtig und Wiederholungen sind möglich. Typische Beispiele dafür sind Zahlenschlösser, Wörter aus unendlichem Vorrat oder Liftfahrten
+
+  ==== TR-Tpps: Binomische Formel und Kombinatorik
+  [menu] > 5: Wahrscheinlichkeit > 3: Kombinationen > nCr(n,k)[enter]. Beispiel:
+  nCr(13,6)
 ]
+
+#pagebreak()
 
 == Produktregel: Die Für-jedes-gibt-es Regel
 #definition[
@@ -146,7 +273,7 @@ _Beispiele:_
     Da die Fahrzeugtypen ($i$), die Farben ($j$) und die Extraausstattungen ($k$) voneinander unabhängig sind, gibt es\
     $i dot j dot k$ verschiedene Fahrzeuge, also $5 dot 30 dot 7 = underline(1050)$.
 ]
-
+#v(1.5em)
 
 == Permutationen/Reihenfolge
 _"Auf wie viele Arten lassen sich $n$ verschiedene Objekte anordnen?"_\
@@ -160,7 +287,7 @@ sich $n!$ Möglichkeiten.
 ]
 
 _Beispiele:_
-#v(-0.5em)
+#v(-1em)
 #example-block[
   + _In wie vielen verschiedenen Reihenfolgen können 8 Läufer ins Ziel gelangen?_\
     $ 8! = underline(40'320) $
@@ -190,9 +317,11 @@ _Beispiele:_
     #hinweis[TR: Menü-5-3 / $"nCr"(m,n)$]
 ]
 
+#pagebreak()
 
 == Auswahlproblem
 #v(-0.5em)
+
 === Kombination: Ziehen ohne Zurücklegen
 _"Auf wie viele Arten kann man $k$ Objekte aus $n$ auswählen?"_\
 Sei $C^n_k$ die Anzahl der Möglichkeiten, $k$ aus $n$ Objekten auszuwählen. Es ist zuerst $k$ mal eine Auswahl zu treffen.
@@ -210,13 +339,13 @@ Ist die Reihenfolge der Objekte nicht relevant, muss noch durch $k!$ geteilt wer
 ]
 
 _Beispiele:_
-#v(-0.5em)
+
 #example-block[
   + _In einem Wald mit 1'000 Bäumen schlägt fünfmal der Blitz ein. Wir dürfen annehmen, dass kein Baum zweimal getroffen wird.
     Auf wie viele Arten können die getroffenen Bäume im Wald verteilt sein?_
 
     Es müssen 5 von 1'000 Bäumen ausgewählt werden:
-    $ binom(1000,5) = 1000! / (5!(1000-5)!) = underline(8'250'291'250'200) $
+    $ binom(1000, 5) = 1000! / (5!(1000-5)!) = underline(8'250'291'250'200) $
 
   + _In einem von $n = 6$ Koffern befindet sich eine Waffe. Es dürfen zwei Koffer geöffnet werden.
     Wie viele Möglichkeiten gibt es für Erfolg und wie viele für Misserfolg?_
@@ -227,6 +356,7 @@ _Beispiele:_
 ]
 
 
+#v(1.5em)
 === Variation: Ziehen mit Zurücklegen
 #hinweis[Perlenkettenproblem]\
 _"Auf wie viele Arten kann man $k$ mal unter $n$ verschiedenen Objekten auswählen?"_\
@@ -297,7 +427,7 @@ $ V_(4,10) = 4^10 = underline(1'048'576 "Möglichkeiten") $
 
   + _Auf wie viele Arten können die Reisenden die Plätze annehmen?_
 
-    Es müssen $12$ der $16$ Plätze ausgewählt werden, das ist auf $binom(16,12)$ Arten möglich. Auf den $12$ ausgewählten
+    Es müssen $12$ der $16$ Plätze ausgewählt werden, das ist auf $binom(16, 12)$ Arten möglich. Auf den $12$ ausgewählten
     Plätzen können die Fahrgäste auf $12!$ Arten angeordnet werden. Deshalb gilt
     $ binom(16, 12) dot 12! = "nCr"(16,12) dot 12! = underline(871'782'912'000) $
 
@@ -338,17 +468,48 @@ $ V_(4,10) = 4^10 = underline(1'048'576 "Möglichkeiten") $
   Die Frage ist meist "Finden Sie ein Modell ...."
 
   ==== Vorgehensweise
-  + Beiblatt _"Lineare Regression"_ verwenden
+  + Beiblatt _"Lineare Regression"_ verwenden und auf der Prüfung notieren, dass sich die Lösung oder Teile der Lösung auf dem Beiblatt befinden
   + TR-Skript _"linreg"_ verwenden: $ "linreg"mat(
       x_1, y_1;
       x_2, y_2;
       dots.v, dots.v;
       x_n, y_n;
-  ) $
+    ) $
   #hinweis[2.15214E6 = 2'152'140. $arrow$ Punkt um 6 Stellen nach rechts schieben]
   + Auf die Prüfung schreiben, dass die Lineare Regression auf dem Beiblatt steht
   + Formel $y(x) = a dot x + b$ mit $a$ und $b$ von linearer Regression verwenden, um Aufgabe zu lösen
+
+  ==== TR-Skript von Alex Krieg
+  ==== Teilaufgabe a) Matrix erstellen auf TR
+  1. Matrix erstellen im TR: [Menü] > [7] Matrix und Vektor > Erstellen > [1] Matrix.. mit n Zeilen und 2 Spalten
+  2. Matrix mit den entsprechenden Zahlen befüllen. X ist auf der linken Seite, Y auf der rechten Seite
+  3. Mit dem TR vor die Matrix navigieren. Anschliessend im TR: [Buch] > [6] > wrstat > linreg
+  4. Klammer anpassen, sodass Matrix eingeklammert ist & dann [enter]
+  5. Resultate abschreiben. Es gibt keine Punkte ohne Rechnungsweg
+  Die Antwort ist meistens, dass es einen einfachen oder linearen Zusammenhang gibt, was mit der Tabelle und den Formeln bewiesen werden kann.
+
+  ==== Teilaufgabe b) Qualität des Modells
+  Gesucht ist der Regressionskoeffizient r, der gesucht wird. Je näher der Koeffizient bei 1 oder -1 ist, desto genauer ist das Modell. Dabei gibt es jeweils 3 Varianten
+  - R ist nahe bei +1: es gibt einen positiven, steigenden Zusammenhang
+  - R ist nahe bei -1: es gibt einen negativen, fallender Zusammenhang
+  - R ist nahe bei 0: Es gibt keinen sichtbaren Zusammenhang von X und Y
+
+  ==== Teilaufgabe c) Wo müsste X sein, wenn eine weitere Zahl eingeführt wird, welche nicht Teil der vorhandenen Tabelle ist?
+  Die Lineasierungsformel y(x) = a*x+b kann entweder direkt ausgerechnet werden oder muss allenfalls noch umgeformt werden.
+  Kann mit dem TR mit solve() gelöst werden: [menü] [3] [1]
+  Beispiel: a = 3, b= 4  solve (0 = 3*x+4, x) [enter]
+
+
+  ==== Lineare Regression: alternative TR-Anleitung (ohne Skript von Alex Krieg)
+  Die x und y Werte in einem Lists & Spreadsheet eintragen.
+
+  Berechnung:
+  [menu] > 4: Statistik > 1: Statistische Berechnung > 1: Lineare Regression (mx+b). -X
+  List: "x", Y List: "y", Store RegEq to: f1(x) > OK. Ergebnisse (a, b, r etc.)
+  erscheinen in neuen Spalten
 ]
+
+#pagebreak()
 
 == Definition
 Seien $X$ und $Y$ zwei reelle Zufallsvariablen. Der _lineare Zusammenhang_ zwischen diesen zwei Messwerten kann
@@ -379,6 +540,7 @@ $ r = "cov"(X, Y) / sqrt("var"(X) dot "var"(Y)) $
   #hinweis[($+1$: positiver/steigender linearer Zusammenhang, $-1$: negativer/fallender Zusammenhang)]
 
 
+#pagebreak()
 
 = Erwartungswert und Varianz, Wahrscheinlichkeitsdichte <dichte>
 #hinweis[
@@ -398,10 +560,22 @@ $ r = "cov"(X, Y) / sqrt("var"(X) dot "var"(Y)) $
 
   ==== Vorgehensweise
   + Zuerst muss überprüft werden, ob es sich wirklich um eine Wahrscheinlichkeitsdichte handelt.\
-    Dafür muss die Variable #hinweis[(oft $a$)] so gewählt werden, dass das Integral von $phi$ den Wert 1 hat.
+    Dafür muss die Variable #hinweis[(oft $a$)] so gewählt werden, dass das Integral von $phi$ den Wert 1 hat. Dies muss auf der Prüfung notiert werden.
   + Integral mit TR ausrechnen
+    [menü] > [3] > [1] für solve()
+    Integral innerhalb von solve() notieren und = 1, a setzen, sodass nach a aufeglöst wird.
   + Erwartungswert ausrechnen #hinweis[Falls Funktion $y$-Achsensymmetrisch, ist $E(X) =$ Mittelpunkt der Funktion]
+
+    Achtung: Wenn die Funktion 𝜑(𝑥) symmetrisch bzw. gerade ist und keine weiteren Zahlenangaben vorhanden sind, dann gilt 𝐸(𝑋) = 0
+    Ist die Funktion gerade, aber nicht um 0, ist 𝐸(𝑋) = Mittelpunkt. Dies ist relevant, wenn zwei oder mehrere Funktionen angegeben werden -> man muss nicht alle Funktionen berechnen, eine Funktion reicht aus.
+    Wenn E(X) = 0 ist, dann gilt bei der Teilaufgabe c) var(X) = $E(X^2)$
+
   + Varianzformel $"var"(X) = E(X^2) - E(X)^2$ hinschreiben, ausrechnen
+
+    Varianz-Formel: $∫(x^2 * f(x), x, -∞, ∞) - (∫(x * f(x), x, -∞, ∞))^2$
+
+    Zur Vollständigkeit: var(X) = $σ^2$
+
 
   #hinweis[
     *TR-Tipps:*
@@ -410,6 +584,10 @@ $ r = "cov"(X, Y) / sqrt("var"(X) dot "var"(Y)) $
     - Wenn Solve beim Lösen eines Integrals ein Integral zurück gibt, auszurechnende Variabel aus dem Integral herausnehmen
     - Zahlen in Brüche umwandeln: Menu-Zahl-Brüche approximieren
   ]
+
+  ==== Weitere TR-Tipps:
+  Wahrscheinlichkeitsdichte -> Verteilfunktion (Integral)
+  [menu] → Calculus (oder Analysis) → Integral wählen.
 ]
 
 #pagebreak()
@@ -420,10 +598,10 @@ $ r = "cov"(X, Y) / sqrt("var"(X) dot "var"(Y)) $
   Die Funktion
   $
     phi(x) = cases(
-      0                     &x <= -1,
-      a sqrt(x+1) quad quad &-1 < x <= 0,
-      a sqrt(1-x)           &0 < x <= 1,
-      0                     &x > 1
+      0 & x <= -1,
+      a sqrt(x+1) quad quad & -1 < x <= 0,
+      a sqrt(1-x) & 0 < x <= 1,
+      0 & x > 1
     )
   $
 
@@ -440,13 +618,13 @@ $ r = "cov"(X, Y) / sqrt("var"(X) dot "var"(Y)) $
 
     $
       1 = integral_(-infinity)^infinity phi(x) space dif x
-      = integral^0_(-1) a sqrt(x+1) space dif x + integral^1_0 a sqrt(1 - x ) space dif x
+      = integral^0_(-1) a sqrt(x+1) space dif x + integral^1_0 a sqrt(1 - x) space dif x
     $
 
     Formel mit dem Taschenrechner mit der Funktion $"solve"()$ lösen:
 
     $
-      "solve"(1 = integral^0_(-1) a sqrt(x+1) space dif x + integral^1_0 a sqrt(1 - x ) space dif x, space a)
+      "solve"(1 = integral^0_(-1) a sqrt(x+1) space dif x + integral^1_0 a sqrt(1 - x) space dif x, space a)
       arrow.double a = 3 / 4
     $
 
@@ -460,7 +638,7 @@ $ r = "cov"(X, Y) / sqrt("var"(X) dot "var"(Y)) $
       = 2a integral^1_0 x^2 sqrt(1-x) space dif x
     $
 
-    Wieder mit TR lösen ($e = $ Variable für $E(X^2)$):
+    Wieder mit TR lösen ($e =$ Variable für $E(X^2)$):
 
     $
       "solve"(e = 2 dot overbracket(3/4, a) integral^1_(0) x^2 sqrt(1-x) space dif x, e)
@@ -477,8 +655,8 @@ $ r = "cov"(X, Y) / sqrt("var"(X) dot "var"(Y)) $
   Man betrachte die Funktion
   $
     phi(x) = cases(
-      a quad quad &-3/2 <= x <= -1/2 "oder" 1/2 <= x <= 3/2,
-      0           &"sonst"
+      a quad quad & -3/2 <= x <= -1/2 "oder" 1/2 <= x <= 3/2,
+      0 & "sonst"
     )
   $
 
@@ -503,10 +681,10 @@ $ r = "cov"(X, Y) / sqrt("var"(X) dot "var"(Y)) $
 
   + Die Varianz kann mit Hilfe von $E(X^2)$ berechnet werden.
     $
-      E(X^2) &= integral^infinity_(-infinity) x^2 phi(x) space dif x\
-      &= integral^(-1 / 2)_(-3 / 2) a x^2 space dif x + integral^(3 / 2)_(1 / 2) a x^2 space dif x\
-      &= integral^(-1 / 2)_(-3 / 2) 1 / 2 x^2 space dif x + integral^(3 / 2)_(1 / 2) 1 / 2 x^2 space dif x
-      overbracket(arrow.double, "TR solve") E(X^2) = 13 / 12
+      E(X^2) & = integral^infinity_(-infinity) x^2 phi(x) space dif x \
+             & = integral^(-1 / 2)_(-3 / 2) a x^2 space dif x + integral^(3 / 2)_(1 / 2) a x^2 space dif x \
+             & = integral^(-1 / 2)_(-3 / 2) 1 / 2 x^2 space dif x + integral^(3 / 2)_(1 / 2) 1 / 2 x^2 space dif x
+               overbracket(arrow.double, "TR solve") E(X^2) = 13 / 12
     $
 
     Varianz berechnen:\
@@ -523,9 +701,9 @@ $ r = "cov"(X, Y) / sqrt("var"(X) dot "var"(Y)) $
       Die Funktion
       $
         phi(x) = cases(
-          0                      &x <= 0,
-          a(x^2 - x^4) quad quad &0 < x <= 1,
-          0                      &1 < x
+          0 & x <= 0,
+          a(x^2 - x^4) quad quad & 0 < x <= 1,
+          0 & 1 < x
         )
       $
       soll als Wahrscheinlichkeitsdichte einer Zufallsvariable $X$ verwendet werden.
@@ -552,8 +730,8 @@ $ r = "cov"(X, Y) / sqrt("var"(X) dot "var"(Y)) $
 
   + Der Erwartungswert ist das Integral von $x dot phi(x)$:
     $
-      E(X) &= integral^infinity_(-infinity) x dot phi(x) space dif x = integral^1_0 x dot a(x^2 - x^4) space dif x
-      overbracket(=, "TR solve") 5 / 8
+      E(X) & = integral^infinity_(-infinity) x dot phi(x) space dif x = integral^1_0 x dot a(x^2 - x^4) space dif x
+             overbracket(=, "TR solve") 5 / 8
     $
 
   + Die Verteilungsfunktion ist für $x$-Werte zwischen 0 und 1:
@@ -565,9 +743,9 @@ $ r = "cov"(X, Y) / sqrt("var"(X) dot "var"(Y)) $
     Die Verteilungsfunktion ist damit
     $
       F_X (x) = cases(
-        0                                           &x <= 0,
-        display((-x^3 dot (3 x^2 - 5))/2) quad quad &0 < x <= 1,
-        1                                           &x > 1,
+        0 & x <= 0,
+        display((-x^3 dot (3 x^2 - 5))/2) quad quad & 0 < x <= 1,
+        1 & x > 1,
       )
     $
 
@@ -653,10 +831,14 @@ $ E(X) = sum_i X(i) dot Rho(X = x_i) $
   table.header([Augenzahl], [1], [2], [3], [4], [5], [6]),
 
   [_Gewinn_],
-  [$0$], [$0$], [$fxcolor("grün", 5)$], [$fxcolor("rot", 1)$], [$fxcolor("gelb", 2)$], [$fxcolor("orange", 2)$],
+  [$0$],
+  [$0$],
+  [$fxcolor("grün", 5)$],
+  [$fxcolor("rot", 1)$],
+  [$fxcolor("gelb", 2)$],
+  [$fxcolor("orange", 2)$],
 
-  [_Wahrscheinlichkeit_],
-  [$1\/6$], [$1\/6$], [$1\/6$], [$1\/6$], [$1\/6$], [$1\/6$]
+  [_Wahrscheinlichkeit_], [$1\/6$], [$1\/6$], [$1\/6$], [$1\/6$], [$1\/6$], [$1\/6$],
 )
 
 $
@@ -807,7 +989,7 @@ Unabhängige Zufallsvariablen sind immer auch unkorreliert. Das umgekehrte muss 
 
 Ein _Zufallsprozess_ erzeugt _Zufallsvariablen_ mit einer gewissen Verteilung, die den _Zufallsprozess_ modellieren.
 Es gibt verschiedene Verteilungen, man muss _klären_, nach welcher Verteilung die Werte verteilt sind.
-
+#v(2em)
 == Zentraler Grenzwertsatz
 #definition[
   Der _zentrale Grenzwertsatz_ besagt, dass sich der Mittelwert und die Summe unabhängig und identisch verteilter
@@ -834,19 +1016,19 @@ Die Vergangenheit hat _keinen Einfluss_ auf den Ausgang eines Experimentes.\
     [
       $
         phi(x) = cases(
-          a dot e^(-a dot x) quad &x >= 0,
-          0                       &"sonst"
+          a dot e^(-a dot x) quad & x >= 0,
+          0 & "sonst"
         )
       $
     ],
     [
       $
         F(x) = cases(
-          0                 &"für" x < 0,
-          1 - e^(-a x) quad &"für" x >= 0.
+          0 & "für" x < 0,
+          1 - e^(-a x) quad & "für" x >= 0.
         )
       $
-    ]
+    ],
   )
 
   #table(
@@ -890,8 +1072,10 @@ Die Vergangenheit hat _keinen Einfluss_ auf den Ausgang eines Experimentes.\
 
   Für $n = 62$ gilt also:
   $
-    1 - Rho(Z <= (62 - 52)/sqrt(62)) = 1 - Rho(Z <= 1.27) arrow.double 1 - overbracket("normCdf"(-infinity, 1.27, 0, 1),
-    "Menu"-5-5-2) = 1 - 0.89796 = 0.102 arrow.double underline(10.2%)
+    1 - Rho(Z <= (62 - 52)/sqrt(62)) = 1 - Rho(Z <= 1.27) arrow.double 1 - overbracket(
+      "normCdf"(-infinity, 1.27, 0, 1),
+      "Menu"-5-5-2
+    ) = 1 - 0.89796 = 0.102 arrow.double underline(10.2%)
   $
 ]
 
@@ -906,21 +1090,21 @@ Jeder Wert innerhalb eines Intervalls ist gleich wahrscheinlich.\
     [
       $
         phi(x) = cases(
-          0            &x < a,
-          1/(b-a) quad &x in [a,b],
-          0            &x > b
+          0 & x < a,
+          1/(b-a) quad & x in [a,b],
+          0 & x > b
         )
       $
     ],
     [
       $
         F(x) = cases(
-          0                &x < a,
-          (x-a)/(b-a) quad &x in [a,b],
-          1                &x > b
+          0 & x < a,
+          (x-a)/(b-a) quad & x in [a,b],
+          1 & x > b
         )
       $
-    ]
+    ],
   )
 
   #table(
@@ -959,9 +1143,9 @@ Jeder Wert innerhalb eines Intervalls ist gleich wahrscheinlich.\
     Nach dem zentralen Grenzwertsatz ist $X$ annähernd normalverteilt mit Erwartungswert $mu = n dot mu_0$ und Varianz
     $sigma^2 = n dot sigma^2_0$. Die Wahrscheinlichkeit, dass $X < 10"kg"$ ist, kann jetzt mit Standardisierung berechnet werden
     $
-      Rho(X < 10"kg") = Rho(X <= 10"kg") &= Rho((X - mu)/sigma <= (10"kg" - mu)/sigma)\
-      &= Rho(Z <= (10"kg" - mu)/sigma) = Rho(Z <= (10"kg" - n dot mu_0)/(sqrt(n) dot sigma_0))
-      = Phi((10"kg" - n dot mu_0)/(sqrt(n) dot sigma_0))
+      Rho(X < 10"kg") = Rho(X <= 10"kg") & = Rho((X - mu)/sigma <= (10"kg" - mu)/sigma) \
+                                         & = Rho(Z <= (10"kg" - mu)/sigma) = Rho(Z <= (10"kg" - n dot mu_0)/(sqrt(n) dot sigma_0))
+                                           = Phi((10"kg" - n dot mu_0)/(sqrt(n) dot sigma_0))
     $
 
     Da das Argument $Phi$ negativ ist, gehen wir zum Komplement über #hinweis[(Achtung: Dividend und Einheiten ändern sich!)]
@@ -994,11 +1178,10 @@ Modellierung vieler kleiner Einflüsse, Messwerte, wiederholte Experimente.\
   #table(
     columns: (1fr,) * 3,
     table.header([Erwartungswert], [Varianz], [Median]),
-    [$ E(X) = mu $],
-    [$ "var"(X) = sigma^2 $],
-    [$ "Median" = mu $]
+    [$ E(X) = mu $], [$ "var"(X) = sigma^2 $], [$ "Median" = mu $],
   )
 ]
+
 
 === Typische Werte der Normalverteilung
 $
@@ -1016,7 +1199,7 @@ $
       $
         Z = (X - mu) / sigma quad => quad Phi(Z) "(aus Verteilungs-Tabelle)"\
         Phi(Z) = cases(
-          Phi(Z)                & Z >= 0,
+          Phi(Z) & Z >= 0,
           1 - Phi(abs(Z)) quad & Z < 0
         )
       $
@@ -1026,14 +1209,13 @@ $
       *$X$:* nicht-standardisierte normalverteilte Zufallsvar.\
       *$mu, sigma^2$:* Params der nicht-standardisierten Normalvert.
       *$Phi$:* Verteilungsfunktion, Wert aus Tabelle ablesen
-    ]
+    ],
   )
 
   #table(
     columns: (1fr,) * 2,
     table.header([Erwartungswert], [Varianz]),
-    [$ E(Z) = 0 $],
-    [$ "var"(Z) = 1 $],
+    [$ E(Z) = 0 $], [$ "var"(Z) = 1 $],
   )
 
   #hinweis[
@@ -1043,6 +1225,23 @@ $
   ]
 ]
 
+#definition[
+  TR-Tipps:
+  ==== Standardnormalverteilung (Quantilsfunktion)
+  ==== Wahrscheinlichkeiten P(a≤Z≤b)
+  Im Calculator: [menu] → 6 Statistik → 5 Verteilungen → 2 Normal Cdf wählen
+  - Untere Grenze = a (Falls kein unteres Limit a = −∞),
+  - obere Grenze = b, Mittelwert = 0,
+  - Standardabw. = 1
+  eingeben → ergibt die gesuchte Wahrscheinlichkeit unter der Standardnormalverteilung.
+
+  ==== Quantile / z-Werte (invNorm
+  Für z-Werte zu gegebenen Flächen:
+
+  [menu] → 6 Statistik → 5 Verteilungen → 3 Inverse Normal
+  „Area“ = Fläche links vom gesuchten z, Mittelwert = 0, Standardabw. = 1 → liefert den zugehörigen
+  z-Wert der Standardnormalverteilung.
+]
 ==== Beispiel
 $
   Rho(fxcolor("grün", a) < X <= fxcolor("orange", b))
@@ -1071,8 +1270,8 @@ $
     "$script(cases(ballot, ballot))$" und dieses dann mit $"solve"()$ lösen
     $
       cases(
-        (22 - mu)/sigma &= -1.6449,
-        (25 - mu)/sigma &= 0.6745
+        (22 - mu)/sigma & = -1.6449,
+        (25 - mu)/sigma & = 0.6745
       )
       quad => quad mu = 24.1276, quad sigma = 1.2934
     $
@@ -1098,7 +1297,7 @@ $
   $
 
   Wert aus Quantil-Standardnormalverteilungstabelle lesen #hinweis[(1 - Wert rechnen, um ihn aus der Tabelle ablesen zu können,
-  danach mit mal -1 wieder zurücktransformieren)] oder direkt mit TR $"invNorm"(0.082, 0, 1)$
+    danach mit mal -1 wieder zurücktransformieren)] oder direkt mit TR $"invNorm"(0.082, 0, 1)$
   $ Phi^(-1)(0.082) = -1 dot Phi^(-1)(1 - 0.082) = -1 dot 1.392 = -1.392 $
 
   Standardabweichung $sigma$ berechnen:
@@ -1125,12 +1324,12 @@ Bei einem Zufallsexperiment mit zwei möglichen Ausgängen sind die verschiedene
   Die Wahrscheinlichkeitsfunktion der Binomialverteilung ist:
   #grid(
     align: horizon,
-    [$ Rho(X = k) = binom(n,k) dot p^k dot (1-p)^(n-k) $],
+    [$ Rho(X = k) = binom(n, k) dot p^k dot (1-p)^(n-k) $],
     [
       *$k$*: Anzahl Ereignisse\
       *$n$*: Anzahl Durchführungen\
       *$p$*: Wahrscheinlichkeit, dass Ereignis eintritt
-    ]
+    ],
   )
 
   #table(
@@ -1141,7 +1340,7 @@ Bei einem Zufallsexperiment mit zwei möglichen Ausgängen sind die verschiedene
   )
 
   #hinweis[
-    TR Binomialkoeffizient $binom(n,k)$: menu-5-3 / $"nCr"(n, k)$,
+    TR Binomialkoeffizient $binom(n, k)$: menu-5-3 / $"nCr"(n, k)$,
     TR Binomialverteilung: menu-5-5-A / $"binomPdf"(n, p, k)$
   ]
 ]
@@ -1162,10 +1361,10 @@ Für eine genauere Approximation kann folgende Korrektur eingefügt werden:
   [
     $
       Rho(a fxcolor("grün", <) X fxcolor("orange", <=) b)
-      = Phi((b fxcolor("orange",+ 1/2) - n p)/sqrt(n p (1-p))) - Phi((a fxcolor("grün", + 1/2) - n p)/sqrt(n p (1-p)))
+      = Phi((b fxcolor("orange", + 1/2) - n p)/sqrt(n p (1-p))) - Phi((a fxcolor("grün", + 1/2) - n p)/sqrt(n p (1-p)))
       \ \
       Rho(a fxcolor("grün", <=) X fxcolor("orange", <=) b)
-      = Phi((b fxcolor("orange",+ 1/2) - n p)/sqrt(n p (1-p))) - Phi((a fxcolor("grün", - 1/2) - n p)/sqrt(n p (1-p)))
+      = Phi((b fxcolor("orange", + 1/2) - n p)/sqrt(n p (1-p))) - Phi((a fxcolor("grün", - 1/2) - n p)/sqrt(n p (1-p)))
     $
   ],
   image("img/wrstat_11.png"),
@@ -1185,9 +1384,9 @@ $ mu = n dot p = 12.180, quad sigma = sqrt(n p(1-p)) approx 3.2365 $
 Standardisierung: $Z = (X - mu)\/sigma$
 
 $
-  Rho(X <= 10) &approx Rho(Z < (overbracket(10.5, X + 1/2) - mu)/sigma)
-  = Rho(Z < (10.5 - 12.180)/3.2365) = Rho(Z < -0.5191) overbracket(=, 5-5-2) 0.3018\
-  arrow.double Rho(X > 10) &approx 1 - 0.3018 = 0.698 arrow.double underline(69.8%)
+              Rho(X <= 10) & approx Rho(Z < (overbracket(10.5, X + 1/2) - mu)/sigma)
+                             = Rho(Z < (10.5 - 12.180)/3.2365) = Rho(Z < -0.5191) overbracket(=, 5-5-2) 0.3018 \
+  arrow.double Rho(X > 10) & approx 1 - 0.3018 = 0.698 arrow.double underline(69.8%)
 $
 
 
@@ -1262,6 +1461,27 @@ Approximation der Binomialverteilung für seltene Ereignisse, die mit Rate $lamb
   )
 ]
 
+#definition[
+  TR-Tipps:
+  ==== Poisson Verteilung
+  ==== Einzelwahrscheinlichkeit P(X=k)P(X=k) – poissonpdf
+  Calculator öffnen.
+  Menü → 6 Statistik → 5 Verteilungen → J Poisson Pdf auswählen.
+
+  Eingaben:
+  - λ (mean): Erwartungswert der Poisson-Verteilung
+  - x: gewünschte Trefferzahl k
+  Ausgabe ist P(X=k)P(X=k).
+
+  ==== Kumulative Wahrscheinlichkeit P(a≤X≤b)P(a≤X≤b) – poissoncdf
+  Menü → 6 Statistik → 5 Verteilungen → K Poisson Cdf.
+
+  Eingaben:
+  - λ: Erwartungswert
+  - lower bound: a (falls kein Wert a = -$infinity$ )
+  - upper bound: b
+  Ausgabe ist P(a≤X≤b)P(a≤X≤b); für P(X≤k)P(X≤k)
+]
 
 #example-block[
   === Beispiel 1: Schwurbler-Anteil (selten)
@@ -1284,12 +1504,12 @@ Approximation der Binomialverteilung für seltene Ereignisse, die mit Rate $lamb
   Genau fünf Fünfer beim Wurf von 10 Würfeln haben die Wahrscheinlichkeit $p$.\
   #hinweis[Binom TR: Menü-5-3 / $"nCr"(10,5)$]
 
-  $ n = 100, quad p = binom(10,5) (1^5 dot 5^5) / 6^10 = 0.013024, quad lambda = n dot p = 100 dot 0.013024 = 1.3024 $
+  $ n = 100, quad p = binom(10, 5) (1^5 dot 5^5) / 6^10 = 0.013024, quad lambda = n dot p = 100 dot 0.013024 = 1.3024 $
 
   $
-    Rho(Y > 2) &= 1 - Rho(X <= 2)\
-    Rho(X <= 2) &= e^(- lambda) sum^2_(k=0) lambda^k / k! = e^(-lambda) (1 + lambda + lambda^2 / 2) = 0.8566\
-    arrow.double P(Y > 2) &= 1 - 0.8566 = 0.1434 arrow.double underline(14.34%)
+               Rho(Y > 2) & = 1 - Rho(X <= 2) \
+              Rho(X <= 2) & = e^(- lambda) sum^2_(k=0) lambda^k / k! = e^(-lambda) (1 + lambda + lambda^2 / 2) = 0.8566 \
+    arrow.double P(Y > 2) & = 1 - 0.8566 = 0.1434 arrow.double underline(14.34%)
   $
 
   === Beispiel 3: Mehr als X Ereignisse (selten)
@@ -1301,10 +1521,10 @@ Approximation der Binomialverteilung für seltene Ereignisse, die mit Rate $lamb
   $ n = 1000, quad p = 0.001, quad lambda = n dot p = 1000 dot 0.001 = 1 $
 
   $
-    Rho(X > 3) &= 1 - P(X <= 3)\
-    Rho(X <= 3)&= e^(- lambda) sum^3_(k=0) lambda^k / k!
-    = e^(-lambda) ( 1 + lambda + lambda^2 / 2! + lambda^3 / 3!) approx 0.981012\
-    arrow.double Rho(X > 3) &= 1 - 0.981012 = 0.018988 arrow.double underline(1.89%)
+                 Rho(X > 3) & = 1 - P(X <= 3) \
+                Rho(X <= 3) & = e^(- lambda) sum^3_(k=0) lambda^k / k!
+                              = e^(-lambda) ( 1 + lambda + lambda^2 / 2! + lambda^3 / 3!) approx 0.981012 \
+    arrow.double Rho(X > 3) & = 1 - 0.981012 = 0.018988 arrow.double underline(1.89%)
   $
 ]
 
@@ -1330,8 +1550,91 @@ Approximation der Binomialverteilung für seltene Ereignisse, die mit Rate $lamb
   + Korrekte Testmethode auswählen und entsprechendes Beiblatt verwenden
   + Anleitung des ausgewählten Tests folgen
 
+  ==== Vorgehensweise für $X^2$-Test für das TR-Skript von Alex Krieg: unbedingt vor der Prüfung testen, bei manchen TR wird der Diskrepanzwert falsch berechnet. Der D-Krit-Wert wird mehrheitlich korrekt berechnet
+
+  + Copy-Paste auf das Prüfungsblatt: «Hier handelt es sich um eine Nullhypothese, welche mit einem X2-Test geprüft werden kann.»
+  + Beiblatt «$X^2$-Test» verwenden und auf der Prüfung notieren, dass die Lösung auf dem Beiblatt notiert ist. Copy-Paste auf das Prüfungsblatt: «Die Lösung zu dieser Aufgabe befindet sich auf dem Beiblatt III»
+  + Nullhypothese formulieren: Meistens die Aufgabenstellung ein bisschen umformuliert. Der Faktor X habe keinen Einfluss auf Y.
+
+    Beispiel: Fragestellung: Hilft das neue Medikament dem Patienten, schneller gesund zu werden?
+    - Nullhypothese 𝐻0: Es ist kein Unterschied in der Genesungszeit zwischen Medikament und Placebo feststellbar
+    - Alternativhypothese 𝐻1: Die Genesungszeit zwischen Medikament und Placebo ist verschieden (Optional)
+
+  + Kategorien identifizieren und in Tabelle schreiben, dazugehörige n ergänzen und Summe von n bilden.
+  + Anzahl Kategorien – 1 = Anzahl Freiheitsgrade d
+  + Falls keine Prozentzahlen angegeben werden, dann gilt für p  1/(Anzahl Kategorien). Dies muss mit der Summe von n multipliziert werden, damit man np erhält. Hypothesen können nicht mit Prozentzahlen getestet werden, sondern mit Anzahlen in der Dezimalschreibweise. P kann nun in der Dezimalschreibweise in der 1. Spalte der Matrix eingefügt werden und np
+  + Wahl von 𝛼: Mit welcher Sicherheit kann etwas bestimmt werden? (Bsp. Bei 99% -> 0.01, bei 95% -> 0.05)
+  Falls keine Prozentzahlen angegeben werden, so ist 𝛼 «frei» wählbar. Es sollte aber mit 0.01 oder 0.05 getestet werden. Bei kleiner Gesamanzahl wird meistens 0.05 gewählt.
+  Zur Orientierung: Bei 200 wird tenddenziell 0.05 gewählt, während bei 7000 0.01 gewählt wird
+
+  Wenn die Diskrepanz (D-Wert) deutlich grösser als der DKrit ist, dann muss die Nullhypothese verworfen werden.  Copy-Paste: «Da der Diskrepanzwert deutlich grösser ist als der DKrit-Wert, muss die Nullhypothese verworfen werden.» + Schlussfolgerung, was dies für die Aufgabe bedeutet. Meistens gilt: «Da die Nullhypothese verworfen wird, darf man von den statistischen Grundlagen davon ausgehen, dass {ursprüngliche Behauptung der Aufgabe} stimmt. «
+
+
   #hinweis[Sinnvolles $alpha$: $0.05, 0.01, 0.001$ (Häufig $0.05$)]
 ]
+
+
+== $bold(chi^2)$ Test
+*Wann verwenden?* Um zu prüfen, ob sich die _Häufigkeitsverteilung_ einer kategorialen Variable von einer
+angenommenen Gleichverteilung unterscheidet.
+
+*Was macht der Test?* Häufigkeiten oder Anteile von zwei oder mehr Gruppen kategorialer Daten vergleichen und
+feststellen, ob sie sich signifikant unterscheiden
+
+*Gegeben:* Eine Messung für jede Kategorie
+
+*Beispiel Nullhypothese $H_0$:* Die beobachteten Häufigkeiten $n_i$ entsprechen den Wahrscheinlichkeiten $p_i$
+
+=== Berechnung
+- Beiblatt _"$bold(chi^2)$-Test"_ verwenden
+- TR-Skript _"x2test"_ verwenden:\
+  #hinweis[(Achtung: wenn $P(x_i) = 18%$, muss in Tabelle $0.18$ geschrieben werden und nicht $18$)]
+  $"x2test"(mat(Rho(x_1), x_1; Rho(x_2), x_2; dots.v, dots.v; Rho(x_n), x_n), alpha)$
+- Auf Prüfung schreiben, dass der $chi^2$-Test auf dem Beiblatt steht
+
+#definition[
+  ==== Anleitung für TR mit dem Skript von Alex Krieg
+  1. Matrix erstellen im TR: [Menü] > [7] Matrix und Vektor > Erstellen > [1] Matrix.. mit n Zeilen und 2 Spalten
+  2. Matrix mit den entsprechenden Zahlen befüllen.
+
+    a.	 1. Spalte: Anteile p der Kategorie in der Dezimalschreibweise
+
+    b.	2. Spalte: Messwerte n für jede Kategorie
+
+  3. Mit dem TR vor die Matrix navigieren. Anschliessend im TR: [Buch] > [6] > wrstat > x2test(matrix, a)
+  4. Klammer anpassen, sodass Matrix eingeklammert ist.
+  5. Komma a ergänzen innerhalb der Klammer nach der Matrix und [enter]
+  6. Resultate abschreiben. Es gibt keine Punkte ohne Rechnungsweg. Achtung: Diskrepanzwert (D-Wert) funktioniert nich bei allen TRs gleich, unbedingt nachkontrollieren. Für genaue Resultate Diskrepanzwert von manuell ausrechen. Für die Berechnung vom D-Wert gilt:  $(n_i - "np")^2 /"np"$
+  7. Wenn die Diskrepanz (D-Wert) deutlich grösser als der DKrit ist, dann muss die Nullhypothese verworfen werden.
+]
+
+#definition[
+  ==== TR-Tipps: ohne Skript von Alex Krieg für Chi2-Test
+  1. Daten eingeben (Lists & Spreadsheet)
+  Beobachtete Häufigkeiten → Liste L1
+  Erwartete Häufigkeiten → Liste L2
+
+  Beispiel:
+  - L1: {15, 22, 18, 25} (beobachtet)
+  - L2: {20, 20, 20, 20} (erwartet)
+
+  2. χ²-Test starten
+  Menu → 4 Statistics → 4 Stat Tests → 7 χ² GOF Test (Goodness of Fit)
+
+  3. Einstellungen
+  Observed: L1
+  Expected: L2
+  df: Anzahl Kategorien - 1
+
+  4. Ergebnis ablesen
+  χ² = ... (Diskrepanz)
+  p = ... (p-Wert)
+  df = Freiheitsgrad
+  Entscheidung: Wenn p < α (z.B. 0.05), dann signifikante Diskrepanz zwischen beobachteten und erwarteten Häufigkeiten. Hypothese kann verworfen werden.
+]
+
+
+#pagebreak()
 
 == T-Test
 - *Wann verwenden?* Beim Vergleich der Mittelwerte zweier _kontinuierlicher_ Datengruppen,
@@ -1350,31 +1653,35 @@ Die Stichproben $X_1, .... , X_n$ und $Y_1, ... , Y_m$ mit gleicher Varianz habe
   TR-Skript _"tverttest2"_ verwenden #hinweis[(Der obere Teil des Beiblattes mit den Messdaten bleibt in diesem Fall leer)]
   $ "tverttest2"(n, m x, s x, m, m y, s y, alpha) $
   #hinweis[
-    $n =$ Anzahl Werte Messreihe X, $m x = $ Durchschnitt der X-Werte, $s x =$ Standardabweichung der X-Werte\
+    $n =$ Anzahl Werte Messreihe X, $m x =$ Durchschnitt der X-Werte, $s x =$ Standardabweichung der X-Werte\
     $m =$ Anzahl Werte Messreihe Y, $m y =$ Durchschnitt der Y-Werte, $s y =$ Standardabweichung der Y-Werte
   ]
 + Auf Prüfung schreiben, dass der T-Test auf dem Beiblatt steht
 
+#v(0.5em)
+
+#definition[
+  #v(0.5em)
+  ==== t-Test
+  ==== 1. Stichproben-t-Test
+  1. Listen & Spreadsheet: Daten in eine Liste (z.B. L1 ) eingeben.
+  2. Calculator öffnen.
+  3. Menü → Statistics → Stat Tests → t Test.
+  4. Inpt: Data wählen, Liste ( L1 ) angeben, Freq: 1 .
+  5. μ0 (Hypothesen-Mittelwert) und Alternativhypothese (<, > oder ≠) setzen.
+  6. Mit OK bestätigen; ablesen: t , p , df .
+
+  ==== 2-Stichproben-t-Test (unabhängig)
+  1. Listen & Spreadsheet: Gruppe 1 in L1 , Gruppe 2 in L2 .
+  2. Calculator → Menü → 6 Statistics → 7 Stat Tests → 4 Zwei-Sample t Test.
+  3. Inpt: Data , List1: L1 , List2: L2 , Freq1 = Freq2 = 1 .
+  4. Alternativhypothese wählen.
+  5. Pooled: Yes , wenn Varianzen etwa gleich; sonst Pooled: No .
+  6. OK → t , p , df ablesen.
+
+]
+
 #pagebreak()
-
-== $bold(chi^2)$ Test
-*Wann verwenden?* Um zu prüfen, ob sich die _Häufigkeitsverteilung_ einer kategorialen Variable von einer
-angenommenen Gleichverteilung unterscheidet.
-
-*Was macht der Test?* Häufigkeiten oder Anteile von zwei oder mehr Gruppen kategorialer Daten vergleichen und
-feststellen, ob sie sich signifikant unterscheiden
-
-*Gegeben:* Eine Messung für jede Kategorie
-
-*Beispiel Nullhypothese $H_0$:* Die beobachteten Häufigkeiten $n_i$ entsprechen den Wahrscheinlichkeiten $p_i$
-
-=== Berechnung
-- Beiblatt _"$bold(chi^2)$-Test"_ verwenden
-- TR-Skript _"x2test"_ verwenden:\
-  #hinweis[(Achtung: wenn $P(x_i) = 18%$, muss in Tabelle $0.18$ geschrieben werden und nicht $18$)]
-  $ "x2test"(mat(Rho(x_1), x_1; Rho(x_2), x_2; dots.v, dots.v; Rho(x_n), x_n), alpha) $
-- Auf Prüfung schreiben, dass der $chi^2$-Test auf dem Beiblatt steht
-
 
 == Kolmogorov-Smirnov-Test
 *Wann verwenden?* Wenn mehrere Zufallsvariablen und Grenzen angegeben sind.
@@ -1390,7 +1697,7 @@ feststellen, ob sie sich signifikant unterscheiden
   #hinweis[(Achtung: $K_"krit"$ muss manuell aus Tabelle ausgelesen werden)]
 - Auf Prüfung schreiben, dass der Kolmogorov-Smirnov-Test auf dem Bleiblatt steht
 
-
+#v(2em)
 == Weitere Theorie
 === Grundsätzliche Testmethode
 + _Nullhypothese $H_0$_ #hinweis[(Nichts besonderes)] und ggf. Alternativhypothese $H_1$
@@ -1417,14 +1724,19 @@ feststellen, ob sie sich signifikant unterscheiden
   ==== Aufgabe
   Gegeben ist eine komplizierte Situation. Nur "ja / nein"-Resultate, keine Messwerte, Abhängigkeit.
 
+  Oftmals sind 2-4 verschiedene Prozentzahlen vorhanden, welche entsprechend einem Ereignis zugewiesen werden müssen.
+
   Die Frage ist oft: Mit welcher Wahrscheinlichkeit passiert etwas? "Wie gross ist die Wahrscheinlichkeit, dass ..." /
-  "Wie wahrscheinlich ist es, ..." / "Wie häufig ..."
+  "Wie wahrscheinlich ist es, ..." / "Wie häufig ..." /   "Welcher Anteil ...?"
 
   ==== Vorgehensweise
   + Ereignisse ableiten und hinschreiben
   + Bedingte Wahrscheinlichkeiten zuordnen
   + Gesuchte bedingte Wahrscheinlichkeiten identifizieren
   + Rechenregeln anwenden: Satz von Bayes und/oder Totale Wahrscheinlichkeit
+
+  - Bei der Teilaufgabe a) muss man meisten den beschriebenen Ablauf befolgen
+  - Bei Teilaufgabe b) wird oftmals ein bereits vorhandenes Ereignis gemäss einer bedingten Wahrscheinlichkeit oder Satz von Bayes (siehe Definition unterhalb) umformen und ausrechnen
 ]
 
 #definition[
@@ -1495,22 +1807,25 @@ $arrow.double$ Wechselstrategie ist vorteilhaft.
     $H = {$ Person mit HIV infiziert $}$, $Rho(H) = 0.001$\
     $T = {$ Test positiv $}$, $Rho(T|H) = 0.999$\
     $Rho(dash(T)|dash(H)) = {$ negat. Test bei gesunder Pers. $} = 0.9999$\
-  ]
+  ],
 )
-
+#v(8em)
 *Totale Wahrscheinlichkeit $Rho(T)$ für positiven Test, egal ob infiziert*\
 $
-  Rho(T) &= fxcolor("grün", Rho(T|H)) dot fxcolor("rot", Rho(H)) + fxcolor("gelb", Rho(T|dash(H)))
-  dot fxcolor("orange", Rho(dash(H)))\
-  &= fxcolor("grün", Rho(T|H)) dot fxcolor("rot", Rho(H)) + underbracket((1 - fxcolor("hellblau", Rho(dash(T)|dash(H))))
-    dot (1 - fxcolor("orange", Rho(H))), "Umkehren des Ereignisses in bekannte Werte")\
-  &= 0.999 dot 0.0001 + 0.0001 dot 0.9999 = underline(0.00019899)
+  Rho(T) & = fxcolor("grün", Rho(T|H)) dot fxcolor("rot", Rho(H)) + fxcolor("gelb", Rho(T|dash(H)))
+           dot fxcolor("orange", Rho(dash(H))) \
+         & = fxcolor("grün", Rho(T|H)) dot fxcolor("rot", Rho(H)) + underbracket(
+             (1 - fxcolor("hellblau", Rho(dash(T)|dash(H))))
+             dot (1 - fxcolor("orange", Rho(H))), "Umkehren des Ereignisses in bekannte Werte"
+           ) \
+         & = 0.999 dot 0.0001 + 0.0001 dot 0.9999 = underline(0.00019899)
 $
-
+#v(0.5em)
 *Wahrscheinlichkeit, bei positivem Test infiziert zu sein $Rho(H|T)$*
 
 $Rho(H|T) = Rho(T|H) dot display(Rho(H)/Rho(T)) = 0.999 dot display(0.0001/0.00019899) = underline(0.502)$
 
+#v(0.5em)
 
 == Bedingte Wahrscheinlichkeit
 #definition[
@@ -1533,7 +1848,7 @@ Wie gross ist die Wahrscheinlichkeit zu sterben, wenn man ein Redshirt auf der E
       [*Engineering*], [rot], [149], [6],
       [*Security*], [rot], [90], [18],
       table.hline(stroke: 1.5pt + black),
-      table.footer([*Total*], [], [430], [40])
+      table.footer([*Total*], [], [430], [40]),
     )
   ],
   [
@@ -1587,8 +1902,10 @@ Wie gross ist die Wahrscheinlichkeit zu sterben, wenn man ein Redshirt auf der E
 
 Der Satz von Bayes kann angewendet werden, um _von einer Wahrscheinlichkeit auf die andere zu schliessen_:
 $
-  fxcolor("grün", Rho(R|T)
-  = Rho(R inter T)/Rho(T)) dot underbracket(Rho(R)/Rho(R), "erweitern")
+  fxcolor(
+    "grün", Rho(R|T)
+    = Rho(R inter T)/Rho(T)
+  ) dot underbracket(Rho(R)/Rho(R), "erweitern")
   = underbracket(fxcolor("rot", Rho(T inter R)/Rho(R)) dot Rho(R)/Rho(T), "umstellen")
   = underbracket(fxcolor("rot", Rho(T|R)), "einsetzen") dot Rho(R) / Rho(T) quad
   arrow.double quad bold(Rho(R|T) = Rho(T|R) dot Rho(R)/Rho(T))
@@ -1619,7 +1936,7 @@ $A$ und $B$ heissen _unabhängig_, wenn $Rho(A inter B) = Rho(A) dot Rho(B)$\
     #hinweis[$B$ beeinflusst $A$ nicht, W'keit ist gleich. Der Anteil von $A$ ist bei $B$ und $dash(B)$ gleich.]
     #v(-0.75em)
     #image("img/wrstat_05.png", width: 57%)
-  ]
+  ],
 )
 
 Bei bedingten Wahrscheinlichkeiten gilt:
@@ -1648,10 +1965,10 @@ Wie gross ist die Wahrscheinlichkeit $Rho(T)$, auf der Enterprise umzukommen?
     um die Totale Wahrscheinlichkeit zu erhalten.
 
     $& Rho(T inter G) &= Rho(T|G) dot Rho(G)\
-     + &Rho(T inter B) &= Rho(T|B) dot Rho(B)\
-     + &Rho(T inter R) &= Rho(T|R) dot Rho(R)\
-     #place(line(length: 4.5cm, stroke: 0.075em), dy: -3.4mm)
-     &Rho(T)$
+    + &Rho(T inter B) &= Rho(T|B) dot Rho(B)\
+    + &Rho(T inter R) &= Rho(T|R) dot Rho(R)\
+    #place(line(length: 4.5cm, stroke: 0.075em), dy: -3.4mm)
+    &Rho(T)$
   ],
   image("img/wrstat_03.png"),
 )
@@ -1681,6 +1998,7 @@ Wie gross ist die Wahrscheinlichkeit $Rho(T)$, auf der Enterprise umzukommen?
   image("img/wrstat_01.png"),
 )
 
+#pagebreak()
 
 === Ereignis-Algebra
 Eine Ereignis-Algebra ist eine Menge $cal(A)$ von Ereignissen derart, dass gilt:
@@ -1693,7 +2011,7 @@ Eine Ereignis-Algebra ist eine Menge $cal(A)$ von Ereignissen derart, dass gilt:
   $A in cal(A) space arrow.double space dash(A) = Omega without A in cal(A)$ #hinweis[(`!A`, nicht A)]
 + Die _Schnittmenge_ von zwei Ereignissen ist ein Ereignis:\
   $A, B in cal(A) space arrow.double space A inter B
-    = (A union B) without ((A without B) union (B without A)) in cal(A)$ #hinweis[(A und B)]
+  = (A union B) without ((A without B) union (B without A)) in cal(A)$ #hinweis[(A und B)]
 
 
 === Wahrscheinlichkeit
@@ -1745,6 +2063,8 @@ Die Wahrscheinlichkeit eines Ereignisses $A subset Omega$ ist eine Zahl $Rho(A)$
   ],
   image("img/wrstat_02.png"),
 )
+
+#pagebreak()
 
 === Laplace-Experiment
 #definition[

@@ -57,7 +57,7 @@
 
   let footer = context [
     #set text(font: font-special.font, size: 0.9em)
-    #let separator = if (authors.len() > 2) { ", " } else { " & " } 
+    #let separator = if (authors.len() > 2) { ", " } else { " & " }
     #fach | #semester | #authors.join(separator)
     #h(1fr)
     #languages.at(language).page #counter(page).display()
