@@ -115,7 +115,7 @@ nCr(13,6)
 Die x und y Werte in einem Lists & Spreadsheet eintragen.
 
 Berechnung:
-[menu] > 4: Statistik > 1: Statistische Berechnung > 1: Lineare Regression (mx+b). -X
+[menu] > 4: Statistik > 1: Statistische Berechnung > 3: Lineare Regression (mx+b). -X
 List: "x", Y List: "y", Store RegEq to: f1(x) > OK. Ergebnisse (a, b, r etc.)
 erscheinen in neuen Spalten
 
@@ -145,16 +145,16 @@ Menü → 6 Statistik → 5 Verteilungen → J Poisson Pdf auswählen.
 Eingaben:
 - λ (mean): Erwartungswert der Poisson-Verteilung
 - x: gewünschte Trefferzahl k
-Ausgabe ist P(X=k)P(X=k).
+Ausgabe ist P(X=k).
 
 === Kumulative Wahrscheinlichkeit P(a≤X≤b)P(a≤X≤b) – poissoncdf
 Menü → 6 Statistik → 5 Verteilungen → K Poisson Cdf.
 
 Eingaben:
 - λ: Erwartungswert
-- lower bound: a (falls kein Wert a = -$infinity$ )
+- lower bound: a (falls kein Wert a = 0 )
 - upper bound: b
-Ausgabe ist P(a≤X≤b)P(a≤X≤b); für P(X≤k)P(X≤k)
+Ausgabe ist P(a≤X≤b)P(a≤X≤b); für P(X≤k)
 
 == Chi2-Test
 1. Daten eingeben (Lists & Spreadsheet)
@@ -206,7 +206,6 @@ erwarteten Häufigkeiten. Hypothese kann verworfen werden.
 5. OK → F , p , df1 , df2 ablesen.
 
 #pagebreak()
-
 
 = Kombinatorik <kombinatorik>
 #hinweis[
@@ -466,9 +465,7 @@ $ V_(4,10) = 4^10 = underline(1'048'576 "Möglichkeiten") $
 #definition[
   #v(0.5em)
   ==== Aufgabe
-  Gegeben ist eine Tabelle mit zwei Spalten und/oder eine Grafik mit Punkten oder einer Linie.
-
-  Die Frage ist meist "Finden Sie ein Modell ...."
+  Gegeben ist eine Tabelle mit zwei Spalten und/oder eine Grafik mit Punkten oder einer Linie.  Die Frage ist meist "Finden Sie ein Modell ...."
 
   ==== Vorgehensweise
   + Beiblatt _"Lineare Regression"_ verwenden und auf der Prüfung notieren, dass sich die Lösung oder Teile der Lösung auf dem Beiblatt befinden
@@ -502,15 +499,18 @@ $ V_(4,10) = 4^10 = underline(1'048'576 "Möglichkeiten") $
   Kann mit dem TR mit solve() gelöst werden: [menü] [3] [1]
   Beispiel: a = 3, b= 4  solve (0 = 3*x+4, x) [enter]
 
+  Fallsdie Zahlen im Modell angepasst wurden, so wird wahrscheinlich dieselbe Anpassung bei dieser Teilaufgabe verwendet werden. Wenn nach einer negativen Zahl gefragt wird, dann braucht es oftmals x= b/a
+
 
   ==== Lineare Regression: alternative TR-Anleitung (ohne Skript von Alex Krieg)
   Die x und y Werte in einem Lists & Spreadsheet eintragen.
 
   Berechnung:
-  [menu] > 4: Statistik > 1: Statistische Berechnung > 1: Lineare Regression (mx+b). -X
+  [menu] > 4: Statistik > 1: Statistische Berechnung > 3: Lineare Regression (mx+b). -X
   List: "x", Y List: "y", Store RegEq to: f1(x) > OK. Ergebnisse (a, b, r etc.)
   erscheinen in neuen Spalten
 ]
+
 
 #pagebreak()
 
@@ -576,6 +576,8 @@ $ r = "cov"(X, Y) / sqrt("var"(X) dot "var"(Y)) $
   + Varianzformel $"var"(X) = E(X^2) - E(X)^2$ hinschreiben, ausrechnen
 
     Varianz-Formel: $∫(x^2 * f(x), x, -∞, ∞) - (∫(x * f(x), x, -∞, ∞))^2$
+
+    -$infinity$ und $infinity$ stehen für die untere und obere grenze vom Integral. Diese können auch direkt beim Integral notiert werden und können anschliessend in der Varianzformel weggelassen werden. Dies gilt auch für x.
 
     Zur Vollständigkeit: var(X) = $σ^2$
 
@@ -984,9 +986,14 @@ Unabhängige Zufallsvariablen sind immer auch unkorreliert. Das umgekehrte muss 
   ==== Vorgehensweise
   + Erkennen, welche Verteilung verwendet werden sollte
     - _Exponentialverteilung:_ Etwas geht kaputt, Radioaktiver Zerfall, Warteschlangen
-    - _Normalverteilung:_ Messungen weichen von einem Mittelwert ab
+
+    - _Normalverteilung:_ Messungen weichen von einem Mittelwert ab. Manchnmal wird spezifisch nach einem mittleren [Etwas] und der Standardabweichung gefragt. Bei der Normalverteilung braucht man die Quantilentabelle (Probeprüfung: Aufgabe 6)
+
     - _Binomialverteilung:_ Ereignis tritt ein oder nicht, Person ist X $=>$ ja/nein
-    - _Poissonverteilung:_ In der Aufgabenstellung steht das Wort "selten"
+    Man findet einen Wert für p und n. np = $lambda$ lässt sich leicht berechnen
+
+    - _Poissonverteilung:_ In der Aufgabenstellung steht das Wort "selten". Wenn es keine Teilaufgaben hat, dann wird die gesamte Aufgabe nach Posson gelöst. Man findet einen Wert für p und n. np = $lambda$ lässt sich leicht berechnen (Probeprüfung: Aufgabe 4)
+    Wenn "selten" nur in einer
   + Ähnlichstes Beispiel verwenden, Formeln entsprechend aufschreiben und ausrechnen
 ]
 
@@ -1193,6 +1200,19 @@ $
   plus.minus 3 sigma arrow.double 99.7%
 $
 
+=== Typischer Ablauf der Aufgabe
+#definition[
+  1. Alle möglichen X identifizieren und in P(X < Y) bei Y einsetzen. Falls es sich um ein > handelt, so muss es gedreht werden und der 100 - der gegebene Prozentsatz gerechnet werden. Beispiel:
+  "Ein Viertel hatte einen Wert über 1000." --> P(X > 1000) = 25% = 0.25 / Dies muss zu P( x < 1000) = 75% = 0.75 umgeformt werden
+
+  2. Standardnormalverteilung bilden gemäss 6.5.3 (gleich unterhalb)
+
+  3. Lineares Gleichungsystem bilden, um E(X) und var(X) herauszufinden. Dies lässt sich mit dem TR lösen -> [menü] [3]: Algebra [7]: Gleichungsystem lösen [1]: Gleichungsystem lösen
+  Anzahl Variablen 2
+  x für E(X) nehmen und y für var(X) nehmen.
+  Es ist zu beachten, dass bei var(X) noch die Wurzel gezogen werden muss
+]
+
 
 === Standardnormalverteilung
 #definition[
@@ -1375,6 +1395,24 @@ Für eine genauere Approximation kann folgende Korrektur eingefügt werden:
   image("img/wrstat_11.png"),
 )
 
+=== Typischer Ablauf der Aufgabe
+#definition[
+  1. p und n bestimmen
+  2. np berechnen -> np = E(X) = $mu$
+  3. $sigma$ berechnen mit $"var"(X) = n dot p dot (1 - p) = sigma^2$ und Wurzel ziehen
+  4. Werte gemäss der Darstellung einsetzen  $Phi$($display((X - mu)/sigma = (X - n p)/sqrt(n p (1-p))))$ und ausrechnen.
+  5. $Phi$ auflösen
+  6. Bei Bedarf Ergebnis von 1 subtrahieren.
+  Beispiel Probeprüfung: Es werden mehr als 20 Schwurbler gesucht --> P(X>20)
+  Damit die Formel funktioniert, wird aber die Rechnung mit P(X $<=$ 20) formuliert. Erst bei Schritt 6 wird dies wieder relevant, denn man möchte eigentlich das Ergebis von P(X > 20)
+
+  Deshalb gilt dort: P(X > 20) = 1 - Zwischenergebnis = Endergebnis.
+  Falls die < Zeichen bereits stimmen und keine Umformung benötigt wird, dann kann Schritt 6 weggelassen werden.
+
+]
+
+#pagebreak()
+
 
 === Beispiel 1: Schwurbler-Anteil (nicht selten)
 An eine Verschwörungstheorie glauben 14% der Amerikaner. Ein Dorf hat 87 Einwohner.\
@@ -1401,6 +1439,7 @@ erwarteten Anzahl abweichende Anzahl gerader Augenzahlen zu erhalten?
 
 $ X = "Anzahl gerader Augenzahlen", quad n = 100, quad p = 1 / 2 quad ("Wahrscheinlichkeit gerade Augenzahl") $
 
+
 *Erwartungswert und Varianz*\
 $ mu = n dot p = 50, quad sigma = sqrt(n p(1-p)) = 5 $
 
@@ -1417,6 +1456,7 @@ $
   arrow.double Rho(X < 45 and X > 55) = 1 - 0.7286 = 0.2714 arrow.double underline(27.14%)
 $
 
+#pagebreak()
 === Beispiel 3: Mehr als X Ereign. (nicht selten)
 $40%$ aller Kreditkartentransaktionen sind Visa-Transaktionen. Wie wahrscheinlich ist es, in einer Stichprobe von 1000
 Transaktionen _mehr als_ 430 Visa-Transaktionen zu finden?
