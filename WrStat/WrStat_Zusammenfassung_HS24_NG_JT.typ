@@ -107,11 +107,11 @@ Nachfolgend ist die Reihenfolge einer typischen WrStat-Prüfung von Andreas Mül
 #pagebreak()
 
 = TR-Formeln von Linus
-=== Binomische Formel und Kombinatorik
+== Binomische Formel und Kombinatorik
 [menu] > 5: Wahrscheinlichkeit > 3: Kombinationen > nCr(n,k)[enter]. Beispiel:
 nCr(13,6)
 
-=== Lineare Regression
+== Lineare Regression
 Die x und y Werte in einem Lists & Spreadsheet eintragen.
 
 Berechnung:
@@ -119,26 +119,26 @@ Berechnung:
 List: "x", Y List: "y", Store RegEq to: f1(x) > OK. Ergebnisse (a, b, r etc.)
 erscheinen in neuen Spalten
 
-=== Wahrscheinlichkeitsdichte -> Verteilfunktion (Integral)
+== Wahrscheinlichkeitsdichte -> Verteilfunktion (Integral)
 [menu] → Calculus (oder Analysis) → Integral wählen.
 
-=== Standardnormalverteilung (Quantilsfunktion)
-==== Wahrscheinlichkeiten P(a≤Z≤b)
+== Standardnormalverteilung (Quantilsfunktion)
+=== Wahrscheinlichkeiten P(a≤Z≤b)
 Im Calculator: [menu] → 6 Statistik → 5 Verteilungen → 2 Normal Cdf wählen
 - Untere Grenze = a (Falls kein unteres Limit a = −∞),
 - obere Grenze = b, Mittelwert = 0,
 - Standardabw. = 1
 eingeben → ergibt die gesuchte Wahrscheinlichkeit unter der Standardnormalverteilung.
 
-==== Quantile / z-Werte (invNorm
+=== Quantile / z-Werte (invNorm
 Für z-Werte zu gegebenen Flächen:
 
 [menu] → 6 Statistik → 5 Verteilungen → 3 Inverse Normal
 „Area“ = Fläche links vom gesuchten z, Mittelwert = 0, Standardabw. = 1 → liefert den zugehörigen
 z-Wert der Standardnormalverteilung.
 
-=== Poisson Verteilung
-==== Einzelwahrscheinlichkeit P(X=k)P(X=k) – poissonpdf
+== Poisson Verteilung
+=== Einzelwahrscheinlichkeit P(X=k)P(X=k) – poissonpdf
 Calculator öffnen.
 Menü → 6 Statistik → 5 Verteilungen → J Poisson Pdf auswählen.
 
@@ -147,7 +147,7 @@ Eingaben:
 - x: gewünschte Trefferzahl k
 Ausgabe ist P(X=k)P(X=k).
 
-==== Kumulative Wahrscheinlichkeit P(a≤X≤b)P(a≤X≤b) – poissoncdf
+=== Kumulative Wahrscheinlichkeit P(a≤X≤b)P(a≤X≤b) – poissoncdf
 Menü → 6 Statistik → 5 Verteilungen → K Poisson Cdf.
 
 Eingaben:
@@ -156,7 +156,7 @@ Eingaben:
 - upper bound: b
 Ausgabe ist P(a≤X≤b)P(a≤X≤b); für P(X≤k)P(X≤k)
 
-=== Chi2-Test
+== Chi2-Test
 1. Daten eingeben (Lists & Spreadsheet)
 Beobachtete Häufigkeiten → Liste L1
 Erwartete Häufigkeiten → Liste L2
@@ -180,8 +180,8 @@ df = Freiheitsgrad
 Entscheidung: Wenn p < α (z.B. 0.05), dann signifikante Diskrepanz zwischen beobachteten und
 erwarteten Häufigkeiten. Hypothese kann verworfen werden.
 
-=== t-Test
-==== 1. Stichproben-t-Test
+== t-Test
+=== 1. Stichproben-t-Test
 1. Listen & Spreadsheet: Daten in eine Liste (z.B. L1 ) eingeben.
 2. Calculator öffnen.
 3. Menü → Statistics → Stat Tests → t Test.
@@ -189,7 +189,7 @@ erwarteten Häufigkeiten. Hypothese kann verworfen werden.
 5. μ0 (Hypothesen-Mittelwert) und Alternativhypothese (<, > oder ≠) setzen.
 6. Mit OK bestätigen; ablesen: t , p , df .
 
-==== 2-Stichproben-t-Test (unabhängig)
+=== 2-Stichproben-t-Test (unabhängig)
 1. Listen & Spreadsheet: Gruppe 1 in L1 , Gruppe 2 in L2 .
 2. Calculator → Menü → 6 Statistics → 7 Stat Tests → 4 Zwei-Sample t Test.
 3. Inpt: Data , List1: L1 , List2: L2 , Freq1 = Freq2 = 1 .
@@ -197,8 +197,8 @@ erwarteten Häufigkeiten. Hypothese kann verworfen werden.
 5. Pooled: Yes , wenn Varianzen etwa gleich; sonst Pooled: No .
 6. OK → t , p , df ablesen.
 
-=== F-Test
-==== F-Test für zwei Varianzen
+== F-Test
+=== F-Test für zwei Varianzen
 1. Listen & Spreadsheet: Daten der ersten Stichprobe in L1 , der zweiten in L2 .
 2. Calculator → Menü → 2 Statistics → 2 Stat Tests → 9 Zwei-Stichpriben F Test (oder ähnlich).
 3. Inpt: Data , List1: L1 , List2: L2 .
@@ -243,6 +243,9 @@ erwarteten Häufigkeiten. Hypothese kann verworfen werden.
   [menu] > 5: Wahrscheinlichkeit > 3: Kombinationen > nCr(n,k)[enter]. Beispiel:
   nCr(13,6)
 ]
+
+ #align(center, image("img/Kombinatorik.png", width: 100%))
+ #hinweis[*n*: Gesamtanzahl,  *k*: Auswahlgrösse]
 
 #pagebreak()
 
@@ -1348,9 +1351,11 @@ Bei einem Zufallsexperiment mit zwei möglichen Ausgängen sind die verschiedene
 === Normalapproximation Binomialverteilung
 $X$ ist die Summe von $n$ kleinen Einflüssen auf das Gesamte $arrow.double Rho(X <= k)$ kann mit der _Normalverteilung_
 approximiert werden, sofern die _Anzahl Wiederholungen *$n$*_ gross genug ist und man sich in der Mitte der Normalverteilung
-befindet.
+befindet. 
 
 $display((X - mu)/sigma = (X - n p)/sqrt(n p (1-p))) quad$ ist angenähert standardnormalverteilt.
+
+Verwenden wenn die Aufgabe nach einer Abweichung um einen Bereich fragt.
 
 === Standardisierung mit Korrektur
 Für eine genauere Approximation kann folgende Korrektur eingefügt werden:
@@ -1548,6 +1553,9 @@ Approximation der Binomialverteilung für seltene Ereignisse, die mit Rate $lamb
 
   ==== Vorgehensweise
   + Korrekte Testmethode auswählen und entsprechendes Beiblatt verwenden
+    - *$X^2$-Test:* Zwei kategoriale Inhalte vergleichen. Beobachtete/Erwartete Häufigkeit miteinander vergleichen
+    - *t-Test:* Vergleich von Mittelwerten, Daten sind Normalverteilt
+    - *Kolmogorov-Smirnov-Test:* Mehrere Zufallsvariablen und grenzen sind angegeben
   + Anleitung des ausgewählten Tests folgen
 
   ==== Vorgehensweise für $X^2$-Test für das TR-Skript von Alex Krieg: unbedingt vor der Prüfung testen, bei manchen TR wird der Diskrepanzwert falsch berechnet. Der D-Krit-Wert wird mehrheitlich korrekt berechnet
@@ -1564,8 +1572,8 @@ Approximation der Binomialverteilung für seltene Ereignisse, die mit Rate $lamb
   + Anzahl Kategorien – 1 = Anzahl Freiheitsgrade d
   + Falls keine Prozentzahlen angegeben werden, dann gilt für p  1/(Anzahl Kategorien). Dies muss mit der Summe von n multipliziert werden, damit man np erhält. Hypothesen können nicht mit Prozentzahlen getestet werden, sondern mit Anzahlen in der Dezimalschreibweise. P kann nun in der Dezimalschreibweise in der 1. Spalte der Matrix eingefügt werden und np
   + Wahl von 𝛼: Mit welcher Sicherheit kann etwas bestimmt werden? (Bsp. Bei 99% -> 0.01, bei 95% -> 0.05)
-  Falls keine Prozentzahlen angegeben werden, so ist 𝛼 «frei» wählbar. Es sollte aber mit 0.01 oder 0.05 getestet werden. Bei kleiner Gesamanzahl wird meistens 0.05 gewählt.
-  Zur Orientierung: Bei 200 wird tenddenziell 0.05 gewählt, während bei 7000 0.01 gewählt wird
+  Falls keine Prozentzahlen angegeben werden, so ist 𝛼 «frei» wählbar. Es sollte aber mit 0.01 oder 0.05 getestet werden. Bei kleiner Gesamtanzahl wird meistens 0.05 gewählt.
+  Zur Orientierung: Bei 200 wird tenddenziell 0.05 gewählt, während bei 7000 0.01 gewählt wird. 0.01 wird gewählt, wenn in Aufgabe steht es ist sicherheitsktitisch (z.B lebensbedrohlich).
 
   Wenn die Diskrepanz (D-Wert) deutlich grösser als der DKrit ist, dann muss die Nullhypothese verworfen werden.  Copy-Paste: «Da der Diskrepanzwert deutlich grösser ist als der DKrit-Wert, muss die Nullhypothese verworfen werden.» + Schlussfolgerung, was dies für die Aufgabe bedeutet. Meistens gilt: «Da die Nullhypothese verworfen wird, darf man von den statistischen Grundlagen davon ausgehen, dass {ursprüngliche Behauptung der Aufgabe} stimmt. «
 
@@ -1576,12 +1584,12 @@ Approximation der Binomialverteilung für seltene Ereignisse, die mit Rate $lamb
 
 == $bold(chi^2)$ Test
 *Wann verwenden?* Um zu prüfen, ob sich die _Häufigkeitsverteilung_ einer kategorialen Variable von einer
-angenommenen Gleichverteilung unterscheidet.
+angenommenen Gleichverteilung unterscheidet. (z.B Passt Beobachtung zu angenommener Verteilung? Sind Merkmale unabhängig?)
 
 *Was macht der Test?* Häufigkeiten oder Anteile von zwei oder mehr Gruppen kategorialer Daten vergleichen und
 feststellen, ob sie sich signifikant unterscheiden
 
-*Gegeben:* Eine Messung für jede Kategorie
+*Gegeben:* Eine Messung für jede Kategorie (Tabelle oder Graph)
 
 *Beispiel Nullhypothese $H_0$:* Die beobachteten Häufigkeiten $n_i$ entsprechen den Wahrscheinlichkeiten $p_i$
 
@@ -1591,6 +1599,7 @@ feststellen, ob sie sich signifikant unterscheiden
   #hinweis[(Achtung: wenn $P(x_i) = 18%$, muss in Tabelle $0.18$ geschrieben werden und nicht $18$)]
   $"x2test"(mat(Rho(x_1), x_1; Rho(x_2), x_2; dots.v, dots.v; Rho(x_n), x_n), alpha)$
 - Auf Prüfung schreiben, dass der $chi^2$-Test auf dem Beiblatt steht
+- Falls manuell berechnet wird, muss man für $D_k$ den Wert in der $Chi$-Tabelle suchen (z.B p=0.95, k=3 bei 4 Zeilen und $alpha$=0.05)
 
 #definition[
   ==== Anleitung für TR mit dem Skript von Alex Krieg
