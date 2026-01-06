@@ -243,8 +243,8 @@ erwarteten Häufigkeiten. Hypothese kann verworfen werden.
   nCr(13,6)
 ]
 
- #align(center, image("img/Kombinatorik.png", width: 100%))
- #hinweis[*n*: Gesamtanzahl,  *k*: Auswahlgrösse]
+#align(center, image("img/Kombinatorik.png", width: 100%))
+#hinweis[*n*: Gesamtanzahl,  *k*: Auswahlgrösse]
 
 #pagebreak()
 
@@ -1371,7 +1371,7 @@ Bei einem Zufallsexperiment mit zwei möglichen Ausgängen sind die verschiedene
 === Normalapproximation Binomialverteilung
 $X$ ist die Summe von $n$ kleinen Einflüssen auf das Gesamte $arrow.double Rho(X <= k)$ kann mit der _Normalverteilung_
 approximiert werden, sofern die _Anzahl Wiederholungen *$n$*_ gross genug ist und man sich in der Mitte der Normalverteilung
-befindet. 
+befindet.
 
 $display((X - mu)/sigma = (X - n p)/sqrt(n p (1-p))) quad$ ist angenähert standardnormalverteilt.
 
@@ -1509,23 +1509,23 @@ Approximation der Binomialverteilung für seltene Ereignisse, die mit Rate $lamb
 #definition[
   TR-Tipps:
   ==== Poisson Verteilung
-  ==== Einzelwahrscheinlichkeit P(X=k)P(X=k) – poissonpdf
+  ==== Einzelwahrscheinlichkeit P(X=k) – poissonpdf
   Calculator öffnen.
   Menü → 6 Statistik → 5 Verteilungen → J Poisson Pdf auswählen.
 
   Eingaben:
   - λ (mean): Erwartungswert der Poisson-Verteilung
   - x: gewünschte Trefferzahl k
-  Ausgabe ist P(X=k)P(X=k).
+  Ausgabe ist P(X=k)
 
-  ==== Kumulative Wahrscheinlichkeit P(a≤X≤b)P(a≤X≤b) – poissoncdf
+  ==== Kumulative Wahrscheinlichkeit P(a≤X≤b) – poissoncdf
   Menü → 6 Statistik → 5 Verteilungen → K Poisson Cdf.
 
   Eingaben:
   - λ: Erwartungswert
-  - lower bound: a (falls kein Wert a = -$infinity$ )
+  - lower bound: a (falls kein Wert a = 0 )
   - upper bound: b
-  Ausgabe ist P(a≤X≤b)P(a≤X≤b); für P(X≤k)P(X≤k)
+  Ausgabe ist P(a≤X≤b); für P(X≤k)
 ]
 
 #example-block[
@@ -1645,11 +1645,7 @@ feststellen, ob sie sich signifikant unterscheiden
   ==== Anleitung für TR mit dem Skript von Alex Krieg
   1. Matrix erstellen im TR: [Menü] > [7] Matrix und Vektor > Erstellen > [1] Matrix.. mit n Zeilen und 2 Spalten
   2. Matrix mit den entsprechenden Zahlen befüllen.
-
-    a.	 1. Spalte: Anteile p der Kategorie in der Dezimalschreibweise
-
-    b.	2. Spalte: Messwerte n für jede Kategorie
-
+    1. Spalte: Anteile p der Kategorie in der Dezimalschreibweise und 	2. Spalte: Messwerte n für jede Kategorie
   3. Mit dem TR vor die Matrix navigieren. Anschliessend im TR: [Buch] > [6] > wrstat > x2test(matrix, a)
   4. Klammer anpassen, sodass Matrix eingeklammert ist.
   5. Komma a ergänzen innerhalb der Klammer nach der Matrix und [enter]
