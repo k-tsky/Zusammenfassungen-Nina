@@ -1867,12 +1867,12 @@ $
              (1 - fxcolor("hellblau", Rho(dash(T)|dash(H))))
              dot (1 - fxcolor("orange", Rho(H))), "Umkehren des Ereignisses in bekannte Werte"
            ) \
-         & = 0.999 dot 0.0001 + 0.0001 dot 0.9999 = underline(0.00019899)
+         & = 0.999 dot 0.001 + 0.0001 dot 0.9999 = underline(0.0001099)
 $
 #v(0.5em)
 *Wahrscheinlichkeit, bei positivem Test infiziert zu sein $Rho(H|T)$*
 
-$Rho(H|T) = Rho(T|H) dot display(Rho(H)/Rho(T)) = 0.999 dot display(0.0001/0.00019899) = underline(0.502)$
+$Rho(H|T) = Rho(T|H) dot display(Rho(H)/Rho(T)) = 0.999 dot display(0.001/0.0001099) = underline(0.909008)$
 
 #v(0.5em)
 
