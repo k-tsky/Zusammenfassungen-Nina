@@ -1337,6 +1337,10 @@ $
 Sollte eine Frage zur Varianz bei $n$ Stichproben kommen, muss die Varianz einfach durch $n$ geteilt werden.
 $ "var"(M_n) = "var"(X) / n = sigma^2 / n, sigma_1 = sqrt("var"(M_n)) $
 
+=== Beispiel 3: Bultdurck
+#image("img/Screenshot 2026-01-10 145311.png", width: 100%)
+#image("img/Screenshot 2026-01-10 145321.png", width: 90%)
+
 #pagebreak()
 
 == Binomialverteilung
@@ -1700,6 +1704,9 @@ Die Stichproben $X_1, .... , X_n$ und $Y_1, ... , Y_m$ mit gleicher Varianz habe
   #hinweis[
     $n =$ Anzahl Werte Messreihe X, $m x =$ Durchschnitt der X-Werte, $s x =$ Standardabweichung der X-Werte\
     $m =$ Anzahl Werte Messreihe Y, $m y =$ Durchschnitt der Y-Werte, $s y =$ Standardabweichung der Y-Werte
+    \ $alpha$ = Falls t-Test zweiseitig ist, muss alpha halbiert werden
+    \ Einseitig: Ist A grösser als B? Ist die neue Methode besser? Ist der Ertrag höher?
+    \ Zweiseitig: Ist der Ertrag verschieden? Unterscheiden sich die Mittelwerte? Ist eine der Methoden besser oder Schlechter? Gibt es einen Effekt?
   ]
 + Auf Prüfung schreiben, dass der T-Test auf dem Beiblatt steht
 
@@ -2042,6 +2049,9 @@ Wie gross ist die Wahrscheinlichkeit $Rho(T)$, auf der Enterprise umzukommen?
   ],
   image("img/wrstat_01.png"),
 )
+
+=== Beispielaufgabe: Internatschule
+#image("img/Screenshot 2026-01-09 111804.png")
 
 #pagebreak()
 
